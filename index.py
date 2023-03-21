@@ -112,9 +112,5 @@ def calculate(what):
 known_actions = {
     "wikipedia": wikipedia,
     "calculate": calculate,
-    "simon_blog_search": simon_blog_search
 }
 
-# wiki_response = wikipedia("chatgpt")
-# print(wiki_response)
-query("Please say that again differently", 2)
