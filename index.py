@@ -1,5 +1,6 @@
 # This code is Apache 2 licensed:
 # https://www.apache.org/licenses/LICENSE-2.0
+
 import openai
 import re
 import requests
@@ -23,8 +24,6 @@ class ChatBot:
     def execute(self):
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo", messages=self.messages)
-        # Uncomment this to print out token usage each time, e.g.
-        # {"completion_tokens": 86, "prompt_tokens": 26, "total_tokens": 112}
         print(completion.usage)
         return completion.choices[0].message.content
 
@@ -107,25 +106,6 @@ def wikipedia(q):
 
     return res
 
-
-def simon_blog_search(q):
-    results = requests.get("https://datasette.simonwillison.net/simonwillisonblog.json", params={
-        "sql": """
-        select
-          blog_entry.title || ': ' || substr(html_strip_tags(blog_entry.body), 0, 1000) as text,
-          blog_entry.created
-        from
-          blog_entry join blog_entry_fts on blog_entry.rowid = blog_entry_fts.rowid
-        where
-          blog_entry_fts match escape_fts(:q)
-        order by
-          blog_entry_fts.rank
-        limit
-          1""".strip(),
-        "_shape": "array",
-        "q": q,
-    }).json()
-    return results[0]["text"]
 
 
 def calculate(what):
