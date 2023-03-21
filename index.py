@@ -42,12 +42,9 @@ e.g. calculate: 4 * 7 / 3
 Runs a calculation and returns the number - uses Python so be sure to use floating point syntax if necessary
 
 wikipedia:
-e.g. wikipedia: Django
+e.g. wikipedia: Python programming language
 Returns a summary from searching Wikipedia
 
-simon_blog_search:
-e.g. simon_blog_search: Django
-Search Simon's blog for that term
 
 Always look things up on Wikipedia if you have the opportunity to do so.
 
